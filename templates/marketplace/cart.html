@@ -1,0 +1,33 @@
+{% extends 'marketplace/base_marketplace.html' %}
+{% block title %}Корзина{% endblock %}
+{% block content %}
+<div class="card market-card">
+  <h2>Корзина</h2>
+  <table>
+    <thead><tr><th>Товар</th><th>Цена</th><th>Кол-во</th><th>Сумма</th><th></th></tr></thead>
+    <tbody>
+    {% for it in items %}
+      <tr>
+        <td>
+          {% if it.product.image %}
+            <img src="{{ it.product.image.url }}" alt="" style="width:52px;height:52px;object-fit:cover;border-radius:8px;vertical-align:middle;margin-right:8px">
+          {% endif %}
+          {{ it.product.title }}
+        </td>
+        <td>{{ it.product.price }} ₸</td>
+        <td>{{ it.qty }}</td>
+        <td>{{ it.subtotal }} ₸</td>
+        <td><a class="btn market-secondary" href="{% url 'marketplace:cart_remove' it.product.id %}">Удалить</a></td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="5">Корзина пуста.</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <div style="margin-top:12px">
+    <p><b>Итого:</b> {{ total }} ₸</p>
+    <a class="btn market-secondary" href="{% url 'marketplace:product_list' %}">Продолжить покупки</a>
+    <a class="btn market-btn" href="{% url 'marketplace:checkout' %}">Оформить заказ</a>
+  </div>
+</div>
+{% endblock %}

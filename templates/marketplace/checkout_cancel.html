@@ -1,0 +1,8 @@
+{% extends 'marketplace/base_marketplace.html' %}
+{% block title %}Оплата отменена{% endblock %}
+{% block content %}
+<div class="card market-card" style="max-width:600px">
+  <h2>Оплата отменена</h2>
+  <a class="btn market-secondary" href="{% url 'marketplace:product_list' %}">Назад в каталог</a>
+</div>
+{% endblock %}

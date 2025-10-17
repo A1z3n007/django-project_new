@@ -1,0 +1,19 @@
+{% extends 'bilets/base_bilets.html' %}
+{% block title %}Бронь оформлена{% endblock %}
+{% block content %}
+<div class="card bilets-card">
+  <h2>Готово! Бронь № {{ booking.id }}</h2>
+  <p>Пассажир: {{ booking.passenger }}</p>
+  <p>Рейс: {{ booking.ticket }}</p>
+  <p>Статус оплаты: {% if booking.paid %}Оплачено{% else %}Ожидает оплаты{% endif %}</p>
+
+  {% if not booking.paid %}
+    <form method="post" action="{% url 'bilets:booking_mark_paid' booking.id %}">
+      {% csrf_token %}
+      <button class="btn bilets-btn">Отметить как оплачено (учебный)</button>
+    </form>
+  {% endif %}
+
+  <a class="btn bilets-secondary" href="{% url 'bilets:list' %}" style="margin-left:8px">Вернуться к поиску</a>
+</div>
+{% endblock %}

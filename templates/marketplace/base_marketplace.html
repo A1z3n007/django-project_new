@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Маркетплейс · FinalProject{% endblock %}</title>
+  <link rel="stylesheet" href="/static/css/styles.css"><!-- общий -->
+  <link rel="stylesheet" href="/static/css/marketplace.css"><!-- только для marketplace -->
+  {% block head %}{% endblock %}
+</head>
+<body class="market-body">
+  <div class="container">
+    <nav class="nav market-nav">
+      <a class="brand market-brand" href="{% url 'marketplace:product_list' %}">🛍️ Маркетплейс</a>
+      <div class="links">
+        <a href="{% url 'home' %}">Главная</a>
+        <a href="{% url 'marketplace:cart_view' %}" class="btn secondary">Корзина</a>
+        {% if user.is_authenticated %}
+          <a class="badge" href="{% url 'profile' %}">Мой кабинет</a>
+          <a class="btn secondary" href="{% url 'logout' %}">Выйти</a>
+        {% else %}
+          <a class="btn secondary" href="{% url 'login' %}">Войти</a>
+          <a class="btn" href="{% url 'signup' %}">Регистрация</a>
+        {% endif %}
+      </div>
+    </nav>
+
+    {% block content %}{% endblock %}
+
+    <footer class="market-footer">
+      Маркетплейс · учебный интерфейс · {% now "d.m.Y H:i" %}.
+    </footer>
+  </div>
+</body>
+</html>

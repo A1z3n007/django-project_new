@@ -1,0 +1,19 @@
+:root{
+  --market-accent:#ff79c6;
+  --market-accent-2:#bd93f9;
+  --market-bg:#151018;
+  --market-card:#1e1524;
+  --market-text:#f4f0ff;
+  --market-muted:#c9bde0;
+}
+
+.market-body { background: var(--market-bg); color: var(--market-text); }
+.market-nav { border-bottom: 1px solid rgba(189,147,249,.25); }
+.market-brand { color: var(--market-accent-2); }
+.market-footer { color: var(--market-muted); }
+
+.market-card, .card.market-card { background: var(--market-card); }
+.market-btn, .btn.market-btn { background: var(--market-accent); color:#2a0c1f; }
+.market-btn.secondary, .btn.market-secondary { background:#2a1a34; color:var(--market-text); }
+
+.market-badge, .badge.market-badge { background:#2a1a34; color:var(--market-muted); }

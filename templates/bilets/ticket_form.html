@@ -1,0 +1,26 @@
+{% extends 'bilets/base_bilets.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block head %}
+  <script defer src="/static/js/preview.js"></script>
+{% endblock %}
+{% block content %}
+<div class="card bilets-card" style="max-width:720px">
+  <h2>{{ title }}</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="grid">
+      <div><label>Тип</label>{{ form.transport_type }}</div>
+      <div><label>Откуда</label>{{ form.origin }}</div>
+      <div><label>Куда</label>{{ form.destination }}</div>
+      <div><label>Дата</label>{{ form.departure_date }}</div>
+      <div><label>Цена</label>{{ form.price }}</div>
+      <div style="grid-column:1/-1">
+        <label>Изображение</label>
+        {{ form.image }}
+        <img id="preview" style="display:none;margin-top:8px;width:100%;max-height:280px;object-fit:cover;border-radius:12px">
+      </div>
+    </div>
+    <button class="btn bilets-btn" style="margin-top:12px">Сохранить</button>
+  </form>
+</div>
+{% endblock %}

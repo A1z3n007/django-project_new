@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% block title %}Мой кабинет{% endblock %}
+{% block content %}
+<div class="grid">
+  <div class="card">
+    <h2>Мои брони билетов</h2>
+
+    <form method="get" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+      <input type="hidden" name="page_orders" value="{{ orders_page.number }}">
+      <label>Оплата:
+        <select name="bookings_paid">
+          <option value="" {% if not bookings_paid %}selected{% endif %}>Все</option>
+          <option value="yes" {% if bookings_paid == 'yes' %}selected{% endif %}>Оплачено</option>
+          <option value="no" {% if bookings_paid == 'no' %}selected{% endif %}>Не оплачено</option>
+        </select>
+      </label>
+      <button class="btn secondary">Фильтровать</button>
+    </form>
+
+    <table>
+      <thead><tr><th>#</th><th>Маршрут</th><th>Дата</th><th>Пассажир</th><th>Оплата</th></tr></thead>
+      <tbody>
+      {% for b in bookings_page.object_list %}
+        <tr>
+          <td>{{ b.id }}</td>
+          <td>{{ b.ticket.origin }} → {{ b.ticket.destination }}</td>
+          <td>{{ b.ticket.departure_date }}</td>
+          <td>{{ b.passenger }}</td>
+          <td>{% if b.paid %}Оплачено{% else %}Ожидает{% endif %}</td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="5">Пока нет броней.</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
+    {% if bookings_page.paginator.num_pages > 1 %}
+      <div class="pager">
+        {% if bookings_page.has_previous %}
+          <a class="btn secondary" href="?page_bookings={{ bookings_page.previous_page_number }}&page_orders={{ orders_page.number }}&bookings_paid={{ bookings_paid }}&order_status={{ order_status }}">←</a>
+        {% endif %}
+        <span class="badge">Стр. {{ bookings_page.number }}/{{ bookings_page.paginator.num_pages }}</span>
+        {% if bookings_page.has_next %}
+          <a class="btn secondary" href="?page_bookings={{ bookings_page.next_page_number }}&page_orders={{ orders_page.number }}&bookings_paid={{ bookings_paid }}&order_status={{ order_status }}">→</a>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="card">
+    <h2>Мои заказы</h2>
+
+    <form method="get" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+      <input type="hidden" name="page_bookings" value="{{ bookings_page.number }}">
+      <label>Статус:
+        <select name="order_status">
+          <option value="" {% if not order_status %}selected{% endif %}>Все</option>
+          <option value="pending" {% if order_status == 'pending' %}selected{% endif %}>Ожидает оплаты</option>
+          <option value="paid" {% if order_status == 'paid' %}selected{% endif %}>Оплачен</option>
+          <option value="shipped" {% if order_status == 'shipped' %}selected{% endif %}>Отправлен</option>
+          <option value="done" {% if order_status == 'done' %}selected{% endif %}>Завершён</option>
+          <option value="cancelled" {% if order_status == 'cancelled' %}selected{% endif %}>Отменён</option>
+        </select>
+      </label>
+      <button class="btn secondary">Фильтровать</button>
+    </form>
+
+    <table>
+      <thead><tr><th>#</th><th>Статус</th><th>Позиций</th><th>Сумма</th><th></th></tr></thead>
+      <tbody>
+      {% for o in orders_page.object_list %}
+        <tr>
+          <td>{{ o.id }}</td>
+          <td>{{ o.get_status_display }}</td>
+          <td>{{ o.items.count }}</td>
+          <td>{{ o.total_amount }} ₸</td>
+          <td><a class="btn secondary" href="{% url 'marketplace:order_detail' o.id %}">Открыть</a></td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="5">Пока нет заказов.</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
+    {% if orders_page.paginator.num_pages > 1 %}
+      <div class="pager">
+        {% if orders_page.has_previous %}
+          <a class="btn secondary" href="?page_orders={{ orders_page.previous_page_number }}&page_bookings={{ bookings_page.number }}&bookings_paid={{ bookings_paid }}&order_status={{ order_status }}">←</a>
+        {% endif %}
+        <span class="badge">Стр. {{ orders_page.number }}/{{ orders_page.paginator.num_pages }}</span>
+        {% if orders_page.has_next %}
+          <a class="btn secondary" href="?page_orders={{ orders_page.next_page_number }}&page_bookings={{ bookings_page.number }}&bookings_paid={{ bookings_paid }}&order_status={{ order_status }}">→</a>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

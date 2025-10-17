@@ -1,0 +1,51 @@
+{% extends 'marketplace/base_marketplace.html' %}
+{% block title %}Маркетплейс — Каталог{% endblock %}
+{% block content %}
+<div class="card market-card">
+  <h2>Каталог</h2>
+
+  <form method="get" style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px">
+    <a class="market-badge badge" href="{% url 'marketplace:product_list' %}">Все</a>
+    {% for c in categories %}
+      <a class="market-badge badge" href="?category={{ c.slug }}">{% if active_category == c.slug %}✔ {% endif %}{{ c.name }}</a>
+    {% endfor %}
+
+    <span style="flex-basis:100%"></span>
+    {{ filter_form.q.label_tag }} {{ filter_form.q }}
+    {{ filter_form.price_min.label_tag }} {{ filter_form.price_min }}
+    {{ filter_form.price_max.label_tag }} {{ filter_form.price_max }}
+    <button class="btn market-btn">Фильтровать</button>
+
+    {% if user.is_staff %}
+      <span style="flex:1"></span>
+      <a class="btn market-secondary" href="{% url 'marketplace:product_add' %}">+ Новый товар</a>
+    {% endif %}
+  </form>
+
+  <div class="grid">
+    {% for p in products %}
+      <div class="card market-card">
+        {% if p.image %}<img src="{{ p.image.url }}" alt="" style="width:100%;border-radius:12px;margin-bottom:8px">{% endif %}
+        <h3 class="clamp-2">{{ p.title }}</h3>
+        <p class="market-badge badge">{{ p.category }}</p>
+        <p><b>{{ p.price }} ₸</b></p>
+        <a class="btn market-secondary" href="{% url 'marketplace:product_detail' p.pk %}">Подробнее</a>
+      </div>
+    {% empty %}
+      <p>Пока нет товаров.</p>
+    {% endfor %}
+  </div>
+
+  {% if page_obj.paginator.num_pages > 1 %}
+    <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+      {% if page_obj.has_previous %}
+        <a class="btn market-secondary" href="?page={{ page_obj.previous_page_number }}{% if qs_no_page %}&{{ qs_no_page }}{% endif %}">← Назад</a>
+      {% endif %}
+      <span class="badge market-badge">Стр. {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+      {% if page_obj.has_next %}
+        <a class="btn market-secondary" href="?page={{ page_obj.next_page_number }}{% if qs_no_page %}&{{ qs_no_page }}{% endif %}">Вперёд →</a>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'marketplace/base_marketplace.html' %}
+{% block title %}Оформление заказа{% endblock %}
+{% block content %}
+<div class="card market-card" style="max-width:600px">
+  <h2>Оформление заказа (учебный режим)</h2>
+  <p>Нажмите кнопку, чтобы подтвердить заказ. Оплата будет считаться успешной без внешних сервисов.</p>
+  <form method="post">
+    {% csrf_token %}
+    <button class="btn market-btn">Подтвердить и оплатить</button>
+  </form>
+</div>
+{% endblock %}

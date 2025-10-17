@@ -1,0 +1,29 @@
+{% extends 'marketplace/base_marketplace.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block head %}
+  <script defer src="/static/js/preview.js"></script>
+{% endblock %}
+{% block content %}
+<div class="card market-card" style="max-width:720px">
+  <h2>{{ title }}</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="grid">
+      <div style="grid-column:1/-1">
+        <label>Название</label>
+        {{ form.title }}
+      </div>
+      <div><label>Цена</label>{{ form.price }}</div>
+      <div><label>Категория</label>{{ form.category }}</div>
+      <div><label>В наличии</label>{{ form.in_stock }}</div>
+      <div style="grid-column:1/-1"><label>Описание</label>{{ form.description }}</div>
+      <div style="grid-column:1/-1">
+        <label>Изображение</label>
+        {{ form.image }}
+        <img id="preview" style="display:none;margin-top:8px;width:100%;max-height:280px;object-fit:cover;border-radius:12px">
+      </div>
+    </div>
+    <button class="btn market-btn" style="margin-top:12px">Сохранить</button>
+  </form>
+</div>
+{% endblock %}

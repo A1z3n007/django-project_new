@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Главная · FinalProject{% endblock %}
+{% block content %}
+  <div class="grid">
+    <div class="card">
+      <h2>Приложение «Билеты»</h2>
+      <p>Поиск и бронирование авиа/ЖД билетов.</p>
+      <a class="btn" href="{% url 'bilets:list' %}">Открыть /bilets</a>
+    </div>
+    <div class="card">
+      <h2>Приложение «Маркетплейс»</h2>
+      <p>Список товаров, карточка товара, корзина и заказ.</p>
+      <a class="btn" href="{% url 'marketplace:product_list' %}">Открыть /marketplace</a>
+    </div>
+  </div>
+{% endblock %}

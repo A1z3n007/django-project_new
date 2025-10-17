@@ -1,0 +1,14 @@
+[
+  {"model":"marketplace.category","pk":3,"fields":{"name":"Спорт","slug":"sport"}},
+  {"model":"marketplace.category","pk":4,"fields":{"name":"Дом","slug":"home"}},
+  {"model":"marketplace.product","pk":11,"fields":{"title":"Мышь UltraLight","description":"Лёгкая игровая мышь.","price":"19990.00","category":1,"in_stock":true}},
+  {"model":"marketplace.product","pk":12,"fields":{"title":"Коврик XXL","description":"Нейтральный дизайн.","price":"7990.00","category":1,"in_stock":true}},
+  {"model":"marketplace.product","pk":13,"fields":{"title":"Кроссовки Runner","description":"Повседневные, удобные.","price":"25990.00","category":3,"in_stock":true}},
+  {"model":"marketplace.product","pk":14,"fields":{"title":"Гантели 2×5 кг","description":"Для домашнего фитнеса.","price":"17990.00","category":3,"in_stock":true}},
+  {"model":"marketplace.product","pk":15,"fields":{"title":"Подушка Memory","description":"Ортопедическая.","price":"14990.00","category":4,"in_stock":true}},
+  {"model":"marketplace.product","pk":16,"fields":{"title":"Плед Cozy","description":"Мягкий и тёплый.","price":"9990.00","category":4,"in_stock":true}},
+  {"model":"marketplace.product","pk":17,"fields":{"title":"Рюкзак City","description":"На каждый день.","price":"21990.00","category":2,"in_stock":true}},
+  {"model":"marketplace.product","pk":18,"fields":{"title":"Толстовка Dev","description":"С принтом.","price":"15990.00","category":2,"in_stock":true}},
+  {"model":"marketplace.product","pk":19,"fields":{"title":"Наушники Lite","description":"Проводные.","price":"8990.00","category":1,"in_stock":true}},
+  {"model":"marketplace.product","pk":20,"fields":{"title":"Смарт-лампа","description":"Регулировка по app.","price":"12990.00","category":1,"in_stock":true}}
+]

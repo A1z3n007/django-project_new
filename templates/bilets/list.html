@@ -1,0 +1,57 @@
+{% extends 'bilets/base_bilets.html' %}
+{% block title %}Билеты — Поиск{% endblock %}
+{% block content %}
+<div class="card bilets-card">
+  <h2>Поиск билетов</h2>
+  <form method="get">
+    <div class="grid">
+      <div style="grid-column:1/-1"><label>Поиск</label>{{ form.q }}</div>
+      <div><label>Тип транспорта</label>{{ form.transport_type }}</div>
+      <div><label>Откуда</label>{{ form.origin }}</div>
+      <div><label>Куда</label>{{ form.destination }}</div>
+      <div><label>Дата с</label>{{ form.date_from }}</div>
+      <div><label>Дата по</label>{{ form.date_to }}</div>
+      <div><label>Цена от</label>{{ form.price_min }}</div>
+      <div><label>Цена до</label>{{ form.price_max }}</div>
+    </div>
+    <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+      <button class="btn bilets-btn">Найти</button>
+      {% if user.is_staff %}
+        <a class="btn bilets-secondary" href="{% url 'bilets:ticket_add' %}">+ Новый билет</a>
+      {% endif %}
+    </div>
+  </form>
+</div>
+
+<div class="grid" style="margin-top:16px">
+  {% for t in tickets %}
+    <div class="card bilets-card card-flex">
+      {% if t.image %}
+        <img class="card-thumb" src="{{ t.image.url }}" alt="">
+      {% endif %}
+      <div class="card-body">
+        <div class="card-title clamp-2">{{ t.origin }} → {{ t.destination }}</div>
+        <div class="muted">{{ t.get_transport_type_display }} · {{ t.departure_date }}</div>
+        <div class="price">{{ t.price }} ₸</div>
+        <div class="card-actions">
+          <a class="btn bilets-secondary" href="{% url 'bilets:detail' t.pk %}">Подробнее</a>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <div class="card bilets-card">Ничего не найдено.</div>
+  {% endfor %}
+</div>
+
+{% if page_obj.paginator.num_pages > 1 %}
+  <div class="pager">
+    {% if page_obj.has_previous %}
+      <a class="btn bilets-secondary" href="?page={{ page_obj.previous_page_number }}{% if qs_no_page %}&{{ qs_no_page }}{% endif %}">← Назад</a>
+    {% endif %}
+    <span class="badge bilets-badge">Стр. {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+    {% if page_obj.has_next %}
+      <a class="btn bilets-secondary" href="?page={{ page_obj.next_page_number }}{% if qs_no_page %}&{{ qs_no_page }}{% endif %}">Вперёд →</a>
+    {% endif %}
+  </div>
+{% endif %}
+{% endblock %}

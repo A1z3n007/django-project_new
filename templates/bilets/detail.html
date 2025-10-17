@@ -1,0 +1,15 @@
+{% extends 'bilets/base_bilets.html' %}
+{% block title %}Билет #{{ ticket.id }}{% endblock %}
+{% block content %}
+<div class="card bilets-card">
+  {% if ticket.image %}
+    <img src="{{ ticket.image.url }}" alt="" class="hero-img">
+  {% endif %}
+  <h2>Билет #{{ ticket.id }}</h2>
+  <p><b>Тип:</b> {{ ticket.get_transport_type_display }}</p>
+  <p><b>Маршрут:</b> {{ ticket.origin }} → {{ ticket.destination }}</p>
+  <p><b>Дата:</b> {{ ticket.departure_date }}</p>
+  <p><b>Цена:</b> {{ ticket.price }} ₸</p>
+  <a class="btn bilets-btn" href="{% url 'bilets:book' ticket.pk %}">Забронировать</a>
+</div>
+{% endblock %}

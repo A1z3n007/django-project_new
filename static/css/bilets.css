@@ -1,0 +1,19 @@
+:root {
+  --bilets-accent: #66e0ff;
+  --bilets-accent-2: #1fb6ff;
+  --bilets-bg: #0a0f1c;
+  --bilets-card: #0f1830;
+  --bilets-text: #eaf6ff;
+  --bilets-muted: #a8c2d6;
+}
+
+.bilets-body { background: var(--bilets-bg); color: var(--bilets-text); }
+.bilets-nav { border-bottom: 1px solid rgba(102,224,255,.2); }
+.bilets-brand { color: var(--bilets-accent); }
+.bilets-footer { color: var(--bilets-muted); }
+
+.bilets-card, .card.bilets-card { background: var(--bilets-card); }
+.bilets-btn, .btn.bilets-btn { background: var(--bilets-accent); color: #04202e; }
+.bilets-btn.secondary, .btn.bilets-secondary { background: #122449; color: var(--bilets-text); }
+
+.bilets-badge, .badge.bilets-badge { background:#122449; color: var(--bilets-muted); }

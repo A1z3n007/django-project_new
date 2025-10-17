@@ -1,0 +1,9 @@
+{% extends 'marketplace/base_marketplace.html' %}
+{% block title %}Заказ оплачен{% endblock %}
+{% block content %}
+<div class="card market-card" style="max-width:600px">
+  <h2>Готово! Оплата прошла успешно 🎉</h2>
+  <p>Статус заказа — «Оплачен».</p>
+  <a class="btn market-secondary" href="{% url 'marketplace:product_list' %}">Вернуться в каталог</a>
+</div>
+{% endblock %}

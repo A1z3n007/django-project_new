@@ -1,0 +1,12 @@
+[
+  {"model":"bilets.ticket","pk":11,"fields":{"transport_type":"air","origin":"Алматы","destination":"Дубай","departure_date":"2025-11-10","price":"120000.00"}},
+  {"model":"bilets.ticket","pk":12,"fields":{"transport_type":"air","origin":"Астана","destination":"Стамбул","departure_date":"2025-11-12","price":"98000.00"}},
+  {"model":"bilets.ticket","pk":13,"fields":{"transport_type":"rail","origin":"Алматы","destination":"Талдыкорган","departure_date":"2025-11-07","price":"9000.00"}},
+  {"model":"bilets.ticket","pk":14,"fields":{"transport_type":"rail","origin":"Шымкент","destination":"Тараз","departure_date":"2025-11-08","price":"8000.00"}},
+  {"model":"bilets.ticket","pk":15,"fields":{"transport_type":"air","origin":"Актобе","destination":"Москва","departure_date":"2025-11-18","price":"150000.00"}},
+  {"model":"bilets.ticket","pk":16,"fields":{"transport_type":"air","origin":"Караганда","destination":"Алматы","departure_date":"2025-11-06","price":"45000.00"}},
+  {"model":"bilets.ticket","pk":17,"fields":{"transport_type":"rail","origin":"Костанай","destination":"Астана","departure_date":"2025-11-09","price":"11000.00"}},
+  {"model":"bilets.ticket","pk":18,"fields":{"transport_type":"air","origin":"Алматы","destination":"Атырау","departure_date":"2025-11-20","price":"70000.00"}},
+  {"model":"bilets.ticket","pk":19,"fields":{"transport_type":"air","origin":"Уральск","destination":"Алматы","departure_date":"2025-11-15","price":"65000.00"}},
+  {"model":"bilets.ticket","pk":20,"fields":{"transport_type":"rail","origin":"Павлодар","destination":"Семей","departure_date":"2025-11-11","price":"7000.00"}}
+]

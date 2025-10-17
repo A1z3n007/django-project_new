@@ -1,0 +1,16 @@
+{% extends 'bilets/base_bilets.html' %}
+{% block title %}Бронирование{% endblock %}
+{% block content %}
+<div class="card bilets-card" style="max-width:600px">
+  <h2>Бронирование билета #{{ ticket.id }}</h2>
+  <form method="post">
+    {% csrf_token %}
+    <div class="grid">
+      <div><label>Имя</label>{{ form.first_name }}</div>
+      <div><label>Фамилия</label>{{ form.last_name }}</div>
+      <div style="grid-column:1/-1"><label>Email</label>{{ form.email }}</div>
+    </div>
+    <button class="btn bilets-btn" style="margin-top:12px">Подтвердить бронь</button>
+  </form>
+</div>
+{% endblock %}
